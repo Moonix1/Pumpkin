@@ -1,0 +1,3 @@
+[submodule "Pumpkin/libs/spdlog"]
+	path = Pumpkin/libs/spdlog
+	url = https://github.com/gabime/spdlog
