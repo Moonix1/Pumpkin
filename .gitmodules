@@ -1,3 +1,6 @@
 [submodule "Pumpkin/libs/spdlog"]
 	path = Pumpkin/libs/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Pumpkin/libs/GLFW"]
+	path = Pumpkin/libs/GLFW
+	url = https://github.com/glfw/glfw.git

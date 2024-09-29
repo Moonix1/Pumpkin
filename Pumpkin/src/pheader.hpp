@@ -1,7 +1,9 @@
 #pragma once
 
+#include "Log/Log.hpp"
+
 #include <iostream>
-#include <memory.h>
+#include <memory>
 #include <utility>
 #include <algorithm>
 #include <functional>

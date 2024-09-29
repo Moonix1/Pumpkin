@@ -20,4 +20,12 @@
     #error Pumpkin only supports Linux & Windows!
 #endif
 
+#ifdef PUMPKIN_ASSERTS
+    #define PUMPKIN_ASSERT(x, ...) { if(!(x)) { PUMPKIN_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+    #define PUMPKIN_CORE_ASSERT(x, ...) { if(!(x)) { PUMPKIN_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#else
+    #define PUMPKIN_ASSERT(x, ...)
+    #define PUMPKIN_CORE_ASSERT(x, ...)
+#endif
+
 #define BIT(x) (1 << x)
