@@ -8,9 +8,7 @@ FILE(GLOB_RECURSE SOURCES
     "src/*.cc"
     "src/*.h"
     
-    "${CMAKE_SOURCE_DIR}/Pumpkin/src/**/*.cc"
     "${CMAKE_SOURCE_DIR}/Pumpkin/src/**/*.h"
-    "${CMAKE_SOURCE_DIR}/Pumpkin/src/*.cc"
     "${CMAKE_SOURCE_DIR}/Pumpkin/src/*.h"
 )
 

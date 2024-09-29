@@ -33,7 +33,6 @@ jobs:
       - name: Build everything with Visual Studio
         run: |
           cmake --build bin --config Release  # Change to Debug if needed
-          copy bin\Pumpkin\Release\Pumpkin.dll bin\Sandbox\Release\
           
 
       - name: Run tests (if applicable)
