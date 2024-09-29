@@ -1,0 +1,41 @@
+name: CI
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build-linux-gcc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.2.0
+      - name: Install 3rd party build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install ninja-build
+      - name: Build everything
+        run: |
+          cmake -B Ninja -G Ninja
+          cmake --build Ninja
+
+  build-windows-msvc:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4.2.0
+
+      - name: Setup Visual Studio
+        uses: microsoft/setup-msbuild@v2
+        with:
+          vs-version: '17.0'  # Specify your Visual Studio version
+
+      - name: Configure CMake with Visual Studio
+        run: |
+          cmake -B bin -G "Visual Studio 17 2022" -A x64
+
+      - name: Build everything with Visual Studio
+        run: |
+          cmake --build bin --config Release  # Change to Debug if needed
+          
+
+      - name: Run tests (if applicable)
+        run: |
+          cd build
+          ctest --output-on-failure

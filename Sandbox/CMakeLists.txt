@@ -1,0 +1,19 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 3.10)
+
+PROJECT(Sandbox)
+SET(CMAKE_CXX_STANDARD 20)
+SET(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+FILE(GLOB_RECURSE SOURCES
+    "src/*.cc"
+    "src/*.h"
+    
+    "${CMAKE_SOURCE_DIR}/Pumpkin/src/**/*.cc"
+    "${CMAKE_SOURCE_DIR}/Pumpkin/src/**/*.h"
+    "${CMAKE_SOURCE_DIR}/Pumpkin/src/*.cc"
+    "${CMAKE_SOURCE_DIR}/Pumpkin/src/*.h"
+)
+
+ADD_EXECUTABLE(Sandbox ${SOURCES})
+TARGET_LINK_LIBRARIES(Sandbox PRIVATE Pumpkin)
+TARGET_INCLUDE_DIRECTORIES(Sandbox PRIVATE ${CMAKE_SOURCE_DIR}/Pumpkin/src)
