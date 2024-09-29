@@ -5,6 +5,7 @@
 #include "Events/KeyEvent.hpp"
 #include "Events/MouseEvent.hpp"
 
+#include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
 namespace Pumpkin {
@@ -88,6 +89,12 @@ namespace Pumpkin {
                 break;
             }
             }
+        });
+        
+        glfwSetCharCallback(m_Window, [](GLFWwindow *window, unsigned int keycode) {
+            WindowData &data = *(WindowData*)glfwGetWindowUserPointer(window);
+            KeyTypedEvent event(keycode);
+            data.eventCallback(event);
         });
         
         glfwSetMouseButtonCallback(m_Window, [](GLFWwindow *window, int button,
