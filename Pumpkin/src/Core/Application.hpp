@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Defines.hpp"
-#include "../Events/Event.hpp"
 #include "Window.hpp"
+
+#include "../Events/Event.hpp"
+#include "../Events/ApplicationEvent.hpp"
 
 namespace Pumpkin {
     class PUMPKIN_API Application {
@@ -11,7 +13,11 @@ namespace Pumpkin {
         virtual ~Application();
         
         void Run();
+        
+        void OnEvent(Event& event);
     private:
+        bool OnWindowClose(WindowCloseEvent &event);
+    
         std::unique_ptr<Window> m_Window;
         bool m_Running = true;
     };
