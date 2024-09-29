@@ -23,7 +23,13 @@ TARGET_INCLUDE_DIRECTORIES(Pumpkin PRIVATE libs/imgui)
 TARGET_INCLUDE_DIRECTORIES(Pumpkin PRIVATE libs/spdlog/include)
 
 FIND_PACKAGE(OpenGL REQUIRED)
-TARGET_LINK_LIBRARIES(Pumpkin PRIVATE glfw OpenGL)
+
+if(WIN32)
+    target_link_libraries(ImGui PRIVATE opengl32 glfw)
+elseif(UNIX)
+    target_link_libraries(ImGui PRIVATE OpenGL::GL glfw)
+endif()
+
 TARGET_LINK_LIBRARIES(Pumpkin PRIVATE Glad)
 TARGET_LINK_LIBRARIES(Pumpkin PRIVATE ImGui)
 
