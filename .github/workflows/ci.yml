@@ -19,6 +19,7 @@ jobs:
           libglfw3-dev libglew-dev libglm-dev \
           libfreetype6-dev libfontconfig1-dev \
           libpulse-dev libudev-dev libasound2-dev
+          sudo apt install libx*
           sudo apt install libwayland-dev wayland-protocols
           sudo apt-get -y install ninja-build
       - name: Build everything
