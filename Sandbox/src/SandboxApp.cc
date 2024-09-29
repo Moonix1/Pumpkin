@@ -17,7 +17,8 @@ public:
 class Sandbox : public Pumpkin::Application {
 public:
     Sandbox() {
-        PushLayer(new ExampleLayer);
+        PushLayer(new ExampleLayer());
+        PushOverlay(new Pumpkin::ImGuiLayer());
     }
     
     ~Sandbox() {

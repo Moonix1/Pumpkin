@@ -4,5 +4,6 @@ PROJECT(Pumpkin)
 
 ADD_SUBDIRECTORY(Pumpkin/libs/GLFW)
 ADD_SUBDIRECTORY(Pumpkin/libs/Glad)
+ADD_SUBDIRECTORY(Pumpkin/libs/imgui)
 ADD_SUBDIRECTORY(Pumpkin)
 ADD_SUBDIRECTORY(Sandbox)

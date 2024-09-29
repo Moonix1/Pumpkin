@@ -4,3 +4,6 @@
 [submodule "Pumpkin/libs/GLFW"]
 	path = Pumpkin/libs/GLFW
 	url = https://github.com/glfw/glfw.git
+[submodule "Pumpkin/libs/imgui"]
+	path = Pumpkin/libs/imgui
+	url = https://github.com/Moonix1/imgui.git
