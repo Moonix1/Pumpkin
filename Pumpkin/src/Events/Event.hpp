@@ -2,9 +2,6 @@
 
 #include "../Core/Defines.hpp"
 
-#include <string>
-#include <functional>
-
 // Not my code!
 // stolen from: https://github.com/TheCherno/Hazel
 

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Event.hpp"
-#include <sstream>
 
 // Not my code!
 // stolen from: https://github.com/TheCherno/Hazel
