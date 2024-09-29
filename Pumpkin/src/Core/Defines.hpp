@@ -19,3 +19,5 @@
 #else
     #error Pumpkin only supports Linux & Windows!
 #endif
+
+#define BIT(x) (1 << x)
