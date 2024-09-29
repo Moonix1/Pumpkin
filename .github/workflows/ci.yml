@@ -19,7 +19,25 @@ jobs:
           libglfw3-dev libglew-dev libglm-dev \
           libfreetype6-dev libfontconfig1-dev \
           libpulse-dev libudev-dev libasound2-dev
-          sudo apt install libx*
+          sudo apt install \
+          libx11-dev \
+          libxrandr-dev \
+          libxinerama-dev \
+          libxi-dev \
+          libxkbcommon-dev \
+          libxext-dev \
+          libxrender-dev \
+          libxt-dev \
+          libxmu-dev \
+          libxau-dev \
+          libxdmcp-dev \
+          libxfixes-dev \
+          libxcomposite-dev \
+          libxcursor-dev \
+          libxdamage-dev \
+          libxft-dev \
+          libxi-dev \
+          libxss-dev
           sudo apt install libwayland-dev wayland-protocols
           sudo apt-get -y install ninja-build
       - name: Build everything
