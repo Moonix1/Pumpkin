@@ -12,7 +12,13 @@ jobs:
       - name: Install 3rd party build tools
         run: |
           sudo apt update
-          sudo apt install libxkbcommon-dev
+          sudo apt install build-essential cmake git \
+          libgl1-mesa-dev libglu1-mesa-dev \
+          libx11-dev libxrandr-dev libxinerama-dev libxi-dev \
+          libxkbcommon-dev libwayland-dev wayland-protocols \
+          libglfw3-dev libglew-dev libglm-dev \
+          libfreetype6-dev libfontconfig1-dev \
+          libpulse-dev libudev-dev libasound2-dev
           sudo apt install libwayland-dev wayland-protocols
           sudo apt-get -y install ninja-build
       - name: Build everything
