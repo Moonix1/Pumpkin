@@ -12,7 +12,7 @@ jobs:
       - name: Install 3rd party build tools
         run: |
           sudo apt update
-          sudo apt install wayland wayland-protocols wayland-tools
+          sudo apt install libwayland-dev wayland-protocols
           sudo apt-get -y install ninja-build
       - name: Build everything
         run: |
