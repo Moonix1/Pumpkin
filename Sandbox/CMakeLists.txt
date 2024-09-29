@@ -6,7 +6,7 @@ SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 FILE(GLOB_RECURSE SOURCES
     "src/*.cc"
-    "src/*.h"
+    "src/*.hpp"
 )
 
 ADD_EXECUTABLE(Sandbox ${SOURCES})

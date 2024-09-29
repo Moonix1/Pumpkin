@@ -7,3 +7,6 @@
 [submodule "Pumpkin/libs/imgui"]
 	path = Pumpkin/libs/imgui
 	url = https://github.com/Moonix1/imgui.git
+[submodule "Pumpkin/libs/glm"]
+	path = Pumpkin/libs/glm
+	url = https://github.com/g-truc/glm.git

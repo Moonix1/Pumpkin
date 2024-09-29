@@ -9,7 +9,9 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 
 FILE(GLOB_RECURSE SOURCES
     "src/**/*.cc"
-    "src/**/*.h"
+    "src/**/*.hpp"
+    "libs/glm/glm/**/*.cpp"
+    "libs/glm/glm/**/*.hpp"
 )
 
 ADD_LIBRARY(Pumpkin SHARED ${SOURCES})
@@ -17,18 +19,19 @@ ADD_LIBRARY(Pumpkin SHARED ${SOURCES})
 TARGET_PRECOMPILE_HEADERS(Pumpkin PRIVATE src/pheader.hpp)
 
 TARGET_INCLUDE_DIRECTORIES(Pumpkin PRIVATE src)
+TARGET_INCLUDE_DIRECTORIES(Pumpkin PRIVATE libs/spdlog/include)
 TARGET_INCLUDE_DIRECTORIES(Pumpkin PRIVATE libs/GLFW/include)
 TARGET_INCLUDE_DIRECTORIES(Pumpkin PRIVATE libs/Glad/include)
 TARGET_INCLUDE_DIRECTORIES(Pumpkin PRIVATE libs/imgui)
-TARGET_INCLUDE_DIRECTORIES(Pumpkin PRIVATE libs/spdlog/include)
+TARGET_INCLUDE_DIRECTORIES(Pumpkin PRIVATE libs/glm)
 
 FIND_PACKAGE(OpenGL REQUIRED)
 
-if(WIN32)
+IF(WIN32)
     target_link_libraries(ImGui PRIVATE opengl32 glfw)
-elseif(UNIX)
+ELSEIF(UNIX)
     target_link_libraries(ImGui PRIVATE OpenGL::GL glfw)
-endif()
+ENDIF()
 
 TARGET_LINK_LIBRARIES(Pumpkin PRIVATE Glad)
 TARGET_LINK_LIBRARIES(Pumpkin PRIVATE ImGui)
