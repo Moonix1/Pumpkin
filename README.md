@@ -1,16 +1,10 @@
 # Pumpkin Engine
-<br>\<br>
-
 A little learning project that is written in c++ \
 based off of [Hazel Game Engine](https://github.com/TheCherno/Hazel)
-
-<br>\<br>
 
 > [!WARNING]
 > THIS ENGINE IS IN EARLY DEVELOPMENT EXPECT BUGS \
 > OR THINGS NOT WORKING PROPERLY.
-
-<br>\<br>
 
 ## Support
 
@@ -19,12 +13,10 @@ based off of [Hazel Game Engine](https://github.com/TheCherno/Hazel)
 | Wayland     | WIP |
 | X11         | Yes |
 
-<br>/<br>
 
 | Windows     | Fully Supported |
 | ----------- | --------------- |
 
-<br>/<br>
 
 ## Installation
 Clone the repository make sure you have the `--recursive` flag
