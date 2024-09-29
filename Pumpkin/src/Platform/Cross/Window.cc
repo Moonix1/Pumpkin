@@ -1,10 +1,10 @@
 #include "Window.hpp"
 #include <GLFW/glfw3.h>
 
-#include "../../Events/Event.hpp"
-#include "../../Events/ApplicationEvent.hpp"
-#include "../../Events/KeyEvent.hpp"
-#include "../../Events/MouseEvent.hpp"
+#include "Events/Event.hpp"
+#include "Events/ApplicationEvent.hpp"
+#include "Events/KeyEvent.hpp"
+#include "Events/MouseEvent.hpp"
 
 namespace Pumpkin {
     static bool s_GLFWInitialized = false;

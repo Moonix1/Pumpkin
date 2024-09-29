@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Core/Defines.hpp"
+#include "Core/Defines.hpp"
 #include "spdlog/spdlog.h"
 
 namespace Pumpkin {

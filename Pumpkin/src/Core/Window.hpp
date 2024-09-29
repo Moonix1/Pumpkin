@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../pheader.hpp"
+#include "pheader.hpp"
 #include "Defines.hpp"
-#include "../Events/Event.hpp"
+#include "Events/Event.hpp"
 
 namespace Pumpkin {
     struct WindowProps {

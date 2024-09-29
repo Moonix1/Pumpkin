@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../pheader.hpp"
-#include "../Core/Defines.hpp"
+#include "pheader.hpp"
+#include "Core/Defines.hpp"
 
 // Not my code!
 // stolen from: https://github.com/TheCherno/Hazel
@@ -32,6 +32,7 @@ namespace Pumpkin {
 	{
 		friend class EventDispatcher;
 	public:
+	    bool handled = false;
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
@@ -57,7 +58,7 @@ namespace Pumpkin {
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
-				m_Event.m_Handled = func(*(T*)&m_Event);
+				m_Event.handled = func(*(T*)&m_Event);
 				return true;
 			}
 			return false;
