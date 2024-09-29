@@ -29,8 +29,6 @@ namespace Pumpkin {
             if (event.handled)
                 break;
         }
-        
-        PUMPKIN_CORE_INFO("{0}", event.ToString());
     }
     
     void Application::PushLayer(Layer *layer) {
@@ -55,9 +53,6 @@ namespace Pumpkin {
             
             for (Layer *layer : m_LayerStack)
                 layer->OnUpdate();
-            
-            auto[x, y] = Input::GetMousePosition();
-            PUMPKIN_CORE_TRACE("{0}, {1}", x, y);
                 
             m_Window->OnUpdate();
         }

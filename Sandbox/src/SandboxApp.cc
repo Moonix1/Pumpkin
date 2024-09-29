@@ -6,11 +6,14 @@ public:
         : Layer("Example") {}
         
     void OnUpdate() override {
-        PUMPKIN_INFO("ExampleLayer::Update");
+        
     }
     
     void OnEvent(Pumpkin::Event &event) override {
-        PUMPKIN_INFO("{0}", event.ToString());
+        if (event.GetEventType() == Pumpkin::EventType::KeyPressed) {
+            Pumpkin::KeyPressedEvent &e = (Pumpkin::KeyPressedEvent&)event;
+            PUMPKIN_TRACE("Key pressed: {0}", (char)e.GetKeyCode());
+        }
     }
 };
 
