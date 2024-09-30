@@ -41,6 +41,8 @@ namespace Pumpkin {
         
         unsigned int indices[3] = { 0, 1, 2 };
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+        
+        m_Shader.reset(new Shader("../Shaders/test.vert", "../Shaders/test.frag"));
     }
     
     Application::~Application() {
@@ -78,6 +80,7 @@ namespace Pumpkin {
             glClearColor(0.1f, 0.1f, 0.1f, 1);
             glClear(GL_COLOR_BUFFER_BIT);
             
+            m_Shader->Bind();
             glBindVertexArray(m_VertexArray);
             glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
             
