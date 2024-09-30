@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Core/Defines.hpp"
 #include "Layer.hpp"
 
 #include <vector>

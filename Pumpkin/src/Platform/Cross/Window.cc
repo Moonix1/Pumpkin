@@ -5,8 +5,7 @@
 #include "Events/KeyEvent.hpp"
 #include "Events/MouseEvent.hpp"
 
-#include <GLFW/glfw3.h>
-#include <glad/glad.h>
+#include "Platform/OpenGL/OpenGLContext.hpp"
 
 namespace Pumpkin {
     static bool s_GLFWInitialized = false;
@@ -38,6 +37,7 @@ namespace Pumpkin {
         
         PUMPKIN_CORE_INFO("Creating window {0} ({1}, {2})", props.title, props.width, props.height);
         
+        
         if (!s_GLFWInitialized) {
             int success = glfwInit();
             PUMPKIN_CORE_ASSERT(success, "Could not initialize GLFW!");
@@ -48,9 +48,10 @@ namespace Pumpkin {
         
         m_Window = glfwCreateWindow((int)props.width, (int)props.height,
                                     m_Data.title.c_str(), nullptr, nullptr);
-        glfwMakeContextCurrent(m_Window);
-        int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-        PUMPKIN_CORE_ASSERT(status, "Failed to initialize Glad!");
+        
+        m_Context = new OpenGLContext(m_Window);
+        m_Context->Init();
+        
         glfwSetWindowUserPointer(m_Window, &m_Data);
         SetVSync(true);
         
@@ -132,7 +133,7 @@ namespace Pumpkin {
     
     void CWindow::OnUpdate() {
         glfwPollEvents();
-        glfwSwapBuffers(m_Window);
+        m_Context->SwapBuffers();
     }
     
     void CWindow::SetVSync(bool enabled) {

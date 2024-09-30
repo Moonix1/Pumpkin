@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Log/Log.hpp"
+#include "Core/Defines.hpp"
 
 #include <iostream>
 #include <memory>

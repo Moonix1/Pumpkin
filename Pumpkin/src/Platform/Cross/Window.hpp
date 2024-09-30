@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core/Window.hpp"
+#include "Renderer/RenderingContext.hpp"
 
 #include <GLFW/glfw3.h>
 
@@ -25,6 +26,7 @@ namespace Pumpkin {
         virtual void Shutdown();
     private:
         GLFWwindow *m_Window;
+        RenderingContext *m_Context;
         
         struct WindowData {
             std::string title;

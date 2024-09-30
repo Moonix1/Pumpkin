@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Core/Defines.hpp"
 #include "Events/Event.hpp"
 
 namespace Pumpkin {

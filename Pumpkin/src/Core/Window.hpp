@@ -1,7 +1,6 @@
 #pragma once
 
 #include "pheader.hpp"
-#include "Defines.hpp"
 #include "Events/Event.hpp"
 
 namespace Pumpkin {

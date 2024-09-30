@@ -1,7 +1,6 @@
 #pragma once
 
 #include "pheader.hpp"
-#include "Core/Defines.hpp"
 
 // Not my code!
 // stolen from: https://github.com/TheCherno/Hazel

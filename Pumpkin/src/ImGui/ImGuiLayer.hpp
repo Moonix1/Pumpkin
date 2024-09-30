@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Core/Defines.hpp"
 #include "Layer/Layer.hpp"
 
 #include "Events/ApplicationEvent.hpp"
