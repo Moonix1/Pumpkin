@@ -1,5 +1,7 @@
 #include "Pumpkin/Pumpkin.hpp"
 
+#include "imgui/imgui.h"
+
 class ExampleLayer : public Pumpkin::Layer {
 public:
     ExampleLayer()
@@ -7,6 +9,12 @@ public:
         
     void OnUpdate() override {
         
+    }
+    
+    virtual void OnImGuiRender() override {
+        ImGui::Begin("Test");
+        ImGui::Text("Hello, Pumpkin!");
+        ImGui::End();
     }
     
     void OnEvent(Pumpkin::Event &event) override {
@@ -21,7 +29,6 @@ class Sandbox : public Pumpkin::Application {
 public:
     Sandbox() {
         PushLayer(new ExampleLayer());
-        PushOverlay(new Pumpkin::ImGuiLayer());
     }
     
     ~Sandbox() {
