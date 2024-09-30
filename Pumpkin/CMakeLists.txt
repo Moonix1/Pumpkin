@@ -14,7 +14,7 @@ FILE(GLOB_RECURSE SOURCES
     "libs/glm/glm/**/*.hpp"
 )
 
-ADD_LIBRARY(Pumpkin SHARED ${SOURCES})
+ADD_LIBRARY(Pumpkin STATIC ${SOURCES})
 
 TARGET_PRECOMPILE_HEADERS(Pumpkin PRIVATE src/pheader.hpp)
 
