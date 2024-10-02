@@ -8,8 +8,8 @@
 namespace Pumpkin {
     VertexBuffer *VertexBuffer::Create(float *vertices, size_t size) {
         switch (Renderer::GetAPI()) {
-            case RendererAPI::None: PUMPKIN_CORE_ASSERT(false, "RendererAPI::None is not currently supported!");
-            case RendererAPI::OpenGL: return new OpenGLVertexBuffer(vertices, size);
+            case RendererAPI::API::None: PUMPKIN_CORE_ASSERT(false, "RendererAPI::None is not currently supported!");
+            case RendererAPI::API::OpenGL: return new OpenGLVertexBuffer(vertices, size);
         }
         
         PUMPKIN_CORE_ASSERT(false, "Unknown RendererAPI!");
@@ -18,8 +18,8 @@ namespace Pumpkin {
     
     IndexBuffer *IndexBuffer::Create(uint32_t *indices, size_t size) {
         switch (Renderer::GetAPI()) {
-            case RendererAPI::None: PUMPKIN_CORE_ASSERT(false, "RendererAPI::None is not currently supported!");
-            case RendererAPI::OpenGL: return new OpenGLIndexBuffer(indices, size);
+            case RendererAPI::API::None: PUMPKIN_CORE_ASSERT(false, "RendererAPI::None is not currently supported!");
+            case RendererAPI::API::OpenGL: return new OpenGLIndexBuffer(indices, size);
         }
         
         PUMPKIN_CORE_ASSERT(false, "Unknown RendererAPI!");
