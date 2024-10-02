@@ -10,25 +10,6 @@ namespace Pumpkin {
 
     Application *Application::s_Instance = nullptr;
 
-    static GLenum SDTToOpenGLBaseType(ShaderDataType type) {
-        switch (type) {
-        case ShaderDataType::Float:     return GL_FLOAT;
-        case ShaderDataType::Float2:    return GL_FLOAT;
-        case ShaderDataType::Float3:    return GL_FLOAT;
-        case ShaderDataType::Float4:    return GL_FLOAT;
-        case ShaderDataType::Mat3:      return GL_FLOAT;
-        case ShaderDataType::Mat4:      return GL_FLOAT;
-        case ShaderDataType::Int:       return GL_INT;
-        case ShaderDataType::Int2:      return GL_INT;
-        case ShaderDataType::Int3:      return GL_INT;
-        case ShaderDataType::Int4:      return GL_INT;
-        case ShaderDataType::Bool:      return GL_BOOL;
-        }
-
-        PUMPKIN_CORE_ASSERT(false, "Unknown ShaderDataType!");
-        return 0;
-    }
-
     Application::Application() {
         PUMPKIN_CORE_ASSERT(s_Instance, "Application already exists!");
         s_Instance = this;
@@ -39,41 +20,52 @@ namespace Pumpkin {
 
         PushOverlay(m_ImGuiLayer);
 
-        glGenVertexArrays(1, &m_VertexArray);
-        glBindVertexArray(m_VertexArray);
+        m_TriangleVA.reset(VertexArray::Create());
 
         float vertices[3 * 7] = {
             -0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
              0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
              0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f,
         };
-
-        m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
         
-        {
-            BufferLayout layout = {
-                { ShaderDataType::Float3, "a_Position" },
-                { ShaderDataType::Float4, "a_Color" }
-            };
-            m_VertexBuffer->SetLayout(layout);
-        }
+        std::shared_ptr<VertexBuffer> triangleVB;
+        triangleVB.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
+        BufferLayout triangleLayout = {
+            { ShaderDataType::Float3, "a_Position" },
+            { ShaderDataType::Float4, "a_Color" }
+        };
+        triangleVB->SetLayout(triangleLayout);
+        m_TriangleVA->AddVertexBuffer(triangleVB);
 
-        uint32_t index = 0;
-        const auto &layout = m_VertexBuffer->GetLayout();
-        for (const auto &element : layout) {
-            glEnableVertexAttribArray(index);
-            glVertexAttribPointer(index, element.GetComponentCount(), SDTToOpenGLBaseType(element.type), element.Normalized
-                    ? GL_TRUE : GL_FALSE,
-                    layout.GetStride(), (const void*)element.offset);
-            index++;
-        }
-        
-        
+        uint32_t tIndices[3] = {0, 1, 2};
+        std::shared_ptr<IndexBuffer> triangleIB;
+        triangleIB.reset(IndexBuffer::Create(tIndices, sizeof(tIndices) / sizeof(uint32_t)));
+        m_TriangleVA->SetIndexBuffer(triangleIB);
 
-        uint32_t indices[3] = {0, 1, 2};
-        m_IndexBuffer.reset(
-            IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
-        m_Shader.reset(new Shader("../Shaders/test.vert", "../Shaders/test.frag"));
+        m_SquareVA.reset(VertexArray::Create());
+
+        float sVertices[3 * 4] = {
+            -0.75f, -0.75f, 0.0f,
+             0.75f, -0.75f, 0.0f,
+             0.75f,  0.75f, 0.0f,
+            -0.75f,  0.75f, 0.0f,
+        };
+
+        std::shared_ptr<VertexBuffer> squareVB;
+        squareVB.reset(VertexBuffer::Create(sVertices, sizeof(sVertices)));
+        BufferLayout squareVBLayout = {
+            { ShaderDataType::Float3, "a_Position" },
+        };
+        squareVB->SetLayout(squareVBLayout);
+        m_SquareVA->AddVertexBuffer(squareVB);
+        
+        uint32_t sIndices[6] = {0, 1, 2, 2, 3, 0};
+        std::shared_ptr<IndexBuffer> squareIB;
+        squareIB.reset(IndexBuffer::Create(sIndices, sizeof(sIndices) / sizeof(uint32_t)));
+        m_SquareVA->SetIndexBuffer(squareIB);
+
+        m_TriangleShader.reset(new Shader("../Shaders/test.vert", "../Shaders/test.frag"));
+        m_SquareShader.reset(new Shader("../Shaders/square.vert", "../Shaders/square.frag"));
     }
 
     Application::~Application() {}
@@ -110,10 +102,13 @@ namespace Pumpkin {
             glClearColor(0.1f, 0.1f, 0.1f, 1);
             glClear(GL_COLOR_BUFFER_BIT);
 
-            m_Shader->Bind();
-            glBindVertexArray(m_VertexArray);
-            glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT,
-                        nullptr);
+            m_SquareShader->Bind();
+            m_SquareVA->Bind();
+            glDrawElements(GL_TRIANGLES, m_SquareVA->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+            
+            m_TriangleShader->Bind();
+            m_TriangleVA->Bind();
+            glDrawElements(GL_TRIANGLES, m_TriangleVA->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 
             for (Layer *layer : m_LayerStack)
             layer->OnUpdate();
