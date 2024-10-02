@@ -10,6 +10,7 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 FILE(GLOB_RECURSE SOURCES
     "src/**/*.cc"
     "src/**/*.hpp"
+    "include/**/*.hpp"
     "libs/glm/glm/**/*.cpp"
     "libs/glm/glm/**/*.hpp"
 )
@@ -19,6 +20,7 @@ ADD_LIBRARY(Pumpkin STATIC ${SOURCES})
 TARGET_PRECOMPILE_HEADERS(Pumpkin PRIVATE src/pheader.hpp)
 
 TARGET_INCLUDE_DIRECTORIES(Pumpkin PRIVATE src)
+TARGET_INCLUDE_DIRECTORIES(Pumpkin PRIVATE include)
 TARGET_INCLUDE_DIRECTORIES(Pumpkin PRIVATE libs/spdlog/include)
 TARGET_INCLUDE_DIRECTORIES(Pumpkin PRIVATE libs/GLFW/include)
 TARGET_INCLUDE_DIRECTORIES(Pumpkin PRIVATE libs/Glad/include)

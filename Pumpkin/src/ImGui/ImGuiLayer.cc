@@ -33,7 +33,7 @@ namespace Pumpkin {
 		// feature due to its strict window managing.
 		if (!std::getenv("WAYLAND_DISPLAY")) {
 		    io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
-		}
+	  }
 		
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoTaskBarIcons;
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoMerge;
